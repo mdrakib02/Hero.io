@@ -1,10 +1,11 @@
 import React from 'react'
 import playSTore from "../assets/icons8-google-play-store-48.png"
 import AppleplaySTore from "../assets/icons8-app-store-48.png"
+import bannerImg from "../assets/hero.png"
 export default function Hero() {
     return (
-        <div>
-            <div className='mt-12 flex flex-col items-center container mx-auto px-4 '>
+        <div className='container mx-auto px-4'>
+            <div className='mt-12 flex flex-col items-center '>
                 <h1 className=' text-4xl font-bold md:text-6xl md:font-bold text-center leading-10 md:leading-20'>We Build <br />
                     <span className='heading-title font-extrabold'>Productive </span>Apps</h1>
                 <p className='text-center text-gray-400 w-2/3 mx-auto py-4'>At,HERO.IO, we craft innovative apps designed to make everyday life simpler, smarter, and more exciting.Our goal is to turn your ideas into digital experiences that truly make an impact.</p>
@@ -13,6 +14,9 @@ export default function Hero() {
                     <button className='flex items-center gap-x-2 px-2 py-1 border-[1px] border-gray-200 rounded-[4px] text-base font-semibold'><img className='w-[32px] ' src={AppleplaySTore} alt="" />App Store</button>
 
                 </div>
+            </div>
+            <div className='text-center mx-auto pt-10'>
+                <img className='items-center mx-auto' src={bannerImg} alt="" />
             </div>
         </div>
     )
