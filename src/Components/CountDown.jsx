@@ -21,7 +21,6 @@ export default function CountDown() {
                         <p className='text-4xl md:text-7xl font-bold text-white'>132+</p>
                         <p className='text-base text-gray-100'>31 more will Launch</p>
                     </div>
-
                 </div>
             </div>
         </div>

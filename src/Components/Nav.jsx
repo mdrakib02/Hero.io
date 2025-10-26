@@ -24,8 +24,10 @@ export default function Nav() {
                 <div className='font-semibold text-base flex gap-4'>
                     <NavLink to="/" className={({ isActive }) =>
                         isActive ? "text-indigo-500" : ""}>Home</NavLink>
-                    <NavLink to="/app">App</NavLink>
-                    <NavLink>Installations</NavLink>
+                    <NavLink  to="/apps" className={({ isActive }) =>
+                        isActive ? "text-indigo-500" : ""}>App</NavLink>
+                    <NavLink to="install" className={({ isActive }) =>
+                        isActive ? "text-indigo-500" : ""}>Installations</NavLink>
                 </div>
                 <div className='btn-bg px-3 py-2 flex items-center gap-2'>
                     <FaGithub className='text-white'></FaGithub>
@@ -47,7 +49,7 @@ export default function Nav() {
                 menuOpen ? <div className='flex flex-col gap-y-4 bg-indigo-100 transition-all duration-1000 md:hidden mt-2'>
                     <NavLink to="/" className={({ isActive }) =>
                         isActive ? "text-indigo-500" : ""}>Home</NavLink>
-                    <NavLink to="/">App</NavLink>
+                    <NavLink to="/apps">App</NavLink>
                     <NavLink>Installations</NavLink>
                 </div> : <div className='flex flex-col gap-y-4 bg-indigo-100 transition-all duration-1000 -mt-64 md:hidden'>
                     <NavLink to="/" className={({ isActive }) =>
