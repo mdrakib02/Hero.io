@@ -2,8 +2,8 @@ import React from 'react'
 import { FaDownload } from 'react-icons/fa6';
 import { FaStar } from 'react-icons/fa';
 
-export default function InstalledApps({ app }) {
-  const { image, title, companyName, description, size, reviews, ratingAvg, downloads, ratings } = app;
+export default function InstalledApps({ app, handleRemoveIteams }) {
+  const { image, title, companyName, description, size, reviews, ratingAvg, downloads, ratings, id } = app;
   const formatDownload = new Intl.NumberFormat('en', { notation: 'compact' }).format(downloads);
   const formattedRAting = new Intl.NumberFormat('en', { notation: 'compact' }).format(ratingAvg);
   const formattedSize = new Intl.NumberFormat('en', { notation: 'compact' }).format(size);
@@ -35,7 +35,7 @@ export default function InstalledApps({ app }) {
 
       </div>
       <div>
-        <button className='btn bg-emerald-500 text-white'>Unstall</button>
+        <button onClick={()=>handleRemoveIteams(id)} className='btn bg-emerald-500 text-white'>Unstall</button>
       </div>
     </div>
   )

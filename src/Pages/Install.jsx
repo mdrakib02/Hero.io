@@ -20,8 +20,20 @@ export default function Install() {
         } else if (sortOrder === 'price-desce') {
             return [...installsApp].sort((a, b) => b.size - a.size)
         } else {
-          return  installsApp
+            return installsApp
         }
+    }
+
+    // ------------- Remove Iteams Lists------------
+
+    const handleRemoveIteams = (id) => {
+
+
+        const exitedList = JSON.parse((localStorage.getItem("wishlist")));
+        let updatedList = exitedList.filter(p => p.id != id);
+        setInstallsApps(updatedList)
+        console.log(`I am from ID ${id}`)
+        localStorage.setItem("wishlist", JSON.stringify(updatedList));
     }
 
 
@@ -46,7 +58,7 @@ export default function Install() {
 
                     <div className='grid grid-cols-1 gap-4 '>
                         {
-                            sortItems().map(app => <InstalledApps app={app} id={app.id}></InstalledApps>)
+                            sortItems().map(app => <InstalledApps app={app} handleRemoveIteams={handleRemoveIteams} id={app.id}></InstalledApps>)
                         }
                     </div>
                 </div>
