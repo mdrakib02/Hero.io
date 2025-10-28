@@ -4,6 +4,7 @@ import React, { Suspense, useState } from 'react';
 import useApp from '../Hook/Hook';
 import Spiner from '../Spninner/Spiner';
 import Card from '../Components/Card';
+import AppNotFound from '../Components/AppNotFound';
 
 const Apps = () => {
 
@@ -12,7 +13,7 @@ const Apps = () => {
 
     const [search, setSearch] = useState("")
     const term = search.trim().toLowerCase();
-    const searchProduct = term? apps.filter(product=> product.title.toLowerCase().includes(term)) : apps;
+    const searchProduct = term ? apps.filter(product => product.title.toLowerCase().includes(term)) : apps;
     console.log(search)
     return (
         <div className='container mx-auto px-4'>
@@ -34,12 +35,16 @@ const Apps = () => {
                 </div>
                 <div></div>
             </div>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-                <Suspense fallback={<Spiner></Spiner>}>
-                    {
-                        searchProduct.map((cardData) => <Card dataId={cardData.id} cardData={cardData}></Card>)
-                    }
-                </Suspense>
+            <div className="">
+                {
+                    searchProduct.length > 0 ? (<div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4'>
+                        <Suspense fallback={<Spiner></Spiner>}>
+                            {
+                                searchProduct.map((cardData) => <Card dataId={cardData.id} cardData={cardData}></Card>)
+                            }
+                        </Suspense>
+                    </div >) :( <AppNotFound></AppNotFound>)
+                }
             </div>
         </div>
     );

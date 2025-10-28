@@ -50,12 +50,12 @@ export default function Nav() {
                     <NavLink to="/" className={({ isActive }) =>
                         isActive ? "text-indigo-500" : ""}>Home</NavLink>
                     <NavLink to="/apps">App</NavLink>
-                    <NavLink>Installations</NavLink>
+                    <NavLink to="/install">Installations</NavLink>
                 </div> : <div className='flex flex-col gap-y-4 bg-indigo-100 transition-all duration-1000 -mt-64 md:hidden'>
                     <NavLink to="/" className={({ isActive }) =>
                         isActive ? "text-indigo-500" : ""}>Home</NavLink>
-                    <NavLink to="/">App</NavLink>
-                    <NavLink>Installations</NavLink>
+                    <NavLink to="/apps">App</NavLink>
+                    <NavLink to="/install">Installations</NavLink>
                 </div>
             }
         </div>
