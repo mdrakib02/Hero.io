@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { useLoaderData, useParams } from 'react-router';
 import useApp from '../Hook/Hook';
 import Spiner from '../Spninner/Spiner';
@@ -6,20 +6,33 @@ import { LuDownload } from 'react-icons/lu';
 import { FaStar } from 'react-icons/fa';
 import { AiFillLike } from 'react-icons/ai';
 import toast from 'react-hot-toast';
+import InstalledApps from '../Components/InstalledApps';
 
 
 
 export default function Details() {
     const { apps, loading } = useApp()
 
-    const { id } = useParams();;
-    console.log(apps)
+    const [myInstallApp, setMyInstallApp] = useState([]);
+
+
+    useEffect(() => {
+        const getInstallApp = JSON.parse((localStorage.getItem("wishlist")));
+        if (getInstallApp) {
+            setMyInstallApp(getInstallApp)
+        }
+
+    }, [])
+
+
+
+    const { id } = useParams();
 
     const findData = apps.find((data) => data.id === parseInt(id));
     console.log(findData);
     if (loading) return <Spiner></Spiner>
 
-    const { image, title, companyName, description, reviews, ratingAvg, downloads} = findData;
+    const { image, title, companyName, description, reviews, ratingAvg, downloads } = findData;
 
     // Products Add To Wishlist
 
@@ -39,11 +52,11 @@ export default function Details() {
         }
 
         localStorage.setItem("wishlist", JSON.stringify(updatedList));
-        toast.success("Data Added!")
-        console.log(updatedList)
-        console.log("first")
+        setMyInstallApp(updatedList)
+        toast.success("Installation completed successfully")
     }
 
+    const isApp = myInstallApp.find(p => p.id === findData.id)
     const formatted = new Intl.NumberFormat('en', { notation: 'compact' }).format(downloads);
     const formattedRAting = new Intl.NumberFormat('en', { notation: 'compact' }).format(ratingAvg);
     const formattedReviews = new Intl.NumberFormat('en', { notation: 'compact' }).format(reviews);
@@ -80,7 +93,9 @@ export default function Details() {
                             </div>
 
                         </div>
-                        <button onClick={handleWishList} className='btn text-white bg-emerald-500 mt-6 '>Install Now (291 MB)</button>
+                        {
+                            isApp ? <button disabled className='btn text-white bg-emerald-500 mt-6'>Installed</button> : <button onClick={handleWishList} className='btn text-white bg-emerald-500 mt-6 '>Install Now (291 MB)</button>
+                        }
                     </div>
                 </div>
                 <div className='divider'></div>

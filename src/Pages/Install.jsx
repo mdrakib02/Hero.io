@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import InstalledApps from '../Components/InstalledApps';
+import toast from 'react-hot-toast';
 
 export default function Install() {
 
@@ -34,6 +35,7 @@ export default function Install() {
         setInstallsApps(updatedList)
         console.log(`I am from ID ${id}`)
         localStorage.setItem("wishlist", JSON.stringify(updatedList));
+        toast.success(`App uninstalled successfully!!`)
     }
 
 
