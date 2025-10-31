@@ -8,10 +8,11 @@ import AppNotFound from '../Components/AppNotFound';
 
 const Apps = () => {
 
-    const { apps } = useApp();
+    const { apps , loading} = useApp();
     console.log(apps)
 
     const [search, setSearch] = useState("")
+    
     const term = search.trim().toLowerCase();
     const searchProduct = term ? apps.filter(product => product.title.toLowerCase().includes(term)) : apps;
     console.log(search)
@@ -36,7 +37,7 @@ const Apps = () => {
                 <div></div>
             </div>
             <div className="">
-                {
+                { loading? <Spiner></Spiner> :
                     searchProduct.length > 0 ? (<div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4'>
                         <Suspense fallback={<Spiner></Spiner>}>
                             {

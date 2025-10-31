@@ -7,6 +7,7 @@ import { FaStar } from 'react-icons/fa';
 import { AiFillLike } from 'react-icons/ai';
 import toast from 'react-hot-toast';
 import InstalledApps from '../Components/InstalledApps';
+import { Bar, BarChart, CartesianGrid, ResponsiveContainer, Tooltip, XAxis, YAxis } from 'recharts';
 
 
 
@@ -99,6 +100,23 @@ export default function Details() {
                     </div>
                 </div>
                 <div className='divider'></div>
+
+                {/* ================================= */}
+
+                <div className='p-6 border-[1px] border-gray-200'>
+                    <ResponsiveContainer width="100%" height={300}>
+                        <BarChart
+                            data={apps}
+                            margin={{ top: 20, right: 30, left: 20, bottom: 20 }}
+                        >
+                            <XAxis dataKey="title" stroke="#84cc16" />
+                            <YAxis />
+                            <Tooltip />
+                            <CartesianGrid stroke="#E5E7EB" />
+                            <Bar dataKey="downloads" fill="#84cc16" barSize={30} />
+                        </BarChart>
+                    </ResponsiveContainer>
+                </div>
 
                 <div>
                     <p>{description}</p>
